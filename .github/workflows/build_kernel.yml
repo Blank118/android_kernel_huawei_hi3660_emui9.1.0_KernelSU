@@ -1,4 +1,4 @@
-name: Alpha-Huawei-hi3660-KSU-0.9.2-EMUI9.1.0-Kernel
+name: Build-Huawei-hi3660-KSU-0.9.2-EMUI9.1.0-Kernel
 on:
   workflow_dispatch:
   schedule:
@@ -22,7 +22,7 @@ jobs:
       KERNEL_CMDLINE: "ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- O=out"
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         submodules: 'true'
         fetch-depth: 100
@@ -65,7 +65,7 @@ jobs:
        tools/mkbootimg --kernel out/arch/arm64/boot/Image.gz --base 0x0 --cmdline "loglevel=4 initcall_debug=n page_tracker=on slub_min_objects=16 unmovable_isolate1=2:192M,3:224M,4:256M printktimer=0xfff0a000,0x534,0x538 androidboot.selinux=permissive buildvariant=user" --tags_offset 0x07A00000 --kernel_offset 0x00080000 --ramdisk_offset 0x07c00000 --header_version 1 --os_version 9 --os_patch_level 2020-09-05  --output Pangu_P10_KSU-EMUI9.1.0-permissive-${{ steps.get_time.outputs.TIME }}.img
 
     - name: Upload P10-KSU-Kernel
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: Pangu_P10_KSU-EMUI9.1.0-kernel-${{ steps.get_time.outputs.TIME }}
         path: "Pangu_P10_KSU-*.img"
@@ -94,7 +94,7 @@ jobs:
         tools/mkbootimg --kernel out/arch/arm64/boot/Image.gz --base 0x0 --cmdline "loglevel=4 initcall_debug=n page_tracker=on slub_min_objects=16 unmovable_isolate1=2:192M,3:224M,4:256M printktimer=0xfff0a000,0x534,0x538 androidboot.selinux=permissive buildvariant=user" --tags_offset 0x07A00000 --kernel_offset 0x00080000 --ramdisk_offset 0x07c00000 --header_version 1 --os_version 9 --os_patch_level 2020-09-05  --output Pangu_V9_KSU-permissive-${{ steps.get_time.outputs.TIME }}.img
 
     - name: Upload V9-KSU-Kernel
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: Pangu_V9_KSU-kernel-${{ steps.get_time.outputs.TIME }}
         path: "Pangu_V9_KSU-*.img"
