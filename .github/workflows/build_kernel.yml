@@ -1,4 +1,4 @@
-name: Build Huawei-hi3660-KSU-EMUI9.1.0-Kernel
+name: Alpha-Huawei-hi3660-KSU-0.9.2-EMUI9.1.0-Kernel
 on:
   workflow_dispatch:
   schedule:
